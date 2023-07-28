@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>СИЛАНТ</title>
+        {% load static %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+    </head>
+<body>
+<div class="header">
+    <div class="inner-header">
+    <div class="logo">
+        <div>
+            <img src="{% static 'images/Logotype accent RGB 1.jpg' %}" alt="logo" width="70" height="50">
+        </div>
+        <div>
+            <h4>СИЛАНТ</h4>
+        </div>
+    </div>
+    <div class="contact">
+        <p> +7-8352-20-12-09, telegram <img src="{% static 'images/Telegram_logo.jpg' %}" alt="telegram" width="20" height="20"></p>
+    </div>
+
+        {% if user.is_authenticated %}
+            <div class="auth">
+                <h3>Текущий пользователь:  {{ user.username }}</h3>
+            </div>
+            <div>
+                <form>
+                    <a class="btn btn-primary btn-sm" href="{% url 'logout' %}" role="button">Выйти<span class="glyphicon glyphicon-ok"></span></a>
+                </form>
+            </div>
+        {% else %}
+            <div>
+                <form>
+                    <a class="btn btn-primary btn-sm" href="{% url 'login' %}" role="button">Войти<span class="glyphicon glyphicon-ok"></span></a>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+    <div class="title">
+        <h1>Электронная сервисная книжка "Мой Силант"</h1>
+    </div>
+</div>
+
+<div class="container">
+
+                    {% block content %}
+                    {{ flatpage.content }}
+                    {% endblock content %}
+
+</div>
+<div class="footer">
+            <div>
+            </div>
+            <div class="contact">
+                <p> +7-8352-20-12-09, telegram <img src="{% static 'images/Telegram_logo.jpg' %}" alt="telegram" width="20" height="20"></p>
+            </div>
+            <div class="inner-footer">
+                <div>
+                <img src="{% static 'images/Logotype accent RGB 2.jpg' %}" alt="logo" width="30" height="25">
+                </div>
+                <div>
+                <p> Мой Силант, 2022</p>
+                </div>
+            </div>
+</div>
+</body>
+</html>

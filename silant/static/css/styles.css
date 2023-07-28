@@ -1,0 +1,193 @@
+@font-face {
+  font-family: 'bold';
+  src: url('../fonts/PT-Astra-Sans_Bold.woff') format('woff');
+  font-display: swap;
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'bold-italic';
+  src: url('../fonts/PT-Astra-Sans_Bold-Italic.woff') format('woff');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'italic';
+  src: url('../fonts/PT-Astra-Sans_Italic.woff') format('woff');
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'regular';
+  src: url('../fonts/PT-Astra-Sans_Regular.woff') format('woff');
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+    --main-color-1: #163E6C;
+    --main-color-2: #D20A11;
+    --main-color-3: #EBE6D6;
+    background: var(--main-color-3);
+    font-family: 'regular', sans-serif;
+    color: var(--main-color-1);
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+.conteiner {
+    width: 100%;
+    min-height: 93px;
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    width: 100%;
+    min-height: 93px;
+    background-color: var(--main-color-2);
+    font-family: 'bold-italic', sans-serif;
+    justify-content: space-around;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-size: 22px;
+}
+
+.inner-header {
+    background-color: var(--main-color-2);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 55px;
+    font-family: 'bold-italic', sans-serif;
+    justify-content: space-around;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-size: 22px;
+}
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 55px;
+    background-color: var(--main-color-2);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: 'italic', sans-serif;
+    color: var(--main-color-1);
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contact {
+    font-family: 'italic', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+.inner-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.auth {
+    align-items: end;
+}
+
+.title {
+    align-self: flex-end;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: left;
+}
+
+h4 {
+    text-align: center;
+}
+
+h5 {
+    text-align: center;
+}
+
+h6 {
+    text-align: center;
+}
+
+.image {
+    display: block;
+    margin: 0 auto;
+}
+
+.table_anns {
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 5px;
+    background: var(--main-color-3);
+    border-radius: 20px;
+}
+.table_anns th {
+    font-size: 22px;
+    font-weight: 300;
+    padding: 12px 10px;
+    border-bottom: 2px solid #F56433;
+    color: #F56433;
+}
+
+.table_anns td {
+    padding: 10px;
+    color: #8D8173;
+}
+
+.input_button {
+    display: block;
+    margin: 0 auto;
+}
+
+#teams_form {
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+
+}

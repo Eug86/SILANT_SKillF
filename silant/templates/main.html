@@ -1,0 +1,59 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+machines
+{% endblock title %}
+
+{% block content %}
+
+   <h1 class="h1_anns">Машины <i>({{ machines|length }})</i> </h1>
+
+    <hr>
+   {% if machines %}
+       <table class="table_anns">
+           <tr>
+               <td>
+                   <b>Модель техники</b>
+               </td>
+               <td>
+                   <b>Зав. № машины</b>
+               </td>
+               <td>
+                   <b>Модель двигателя</b>
+               </td>
+               <td>
+                   <b>Зав. № двигателя</b>
+               </td>
+               <td>
+                   <b>Дата отгрузки с завода</b>
+               </td>
+               <td>
+                   <b>Покупатель</b>
+               </td>
+               <td>
+                   <b>Грузополучатель (конечный потребитель)</b>
+               </td>
+               <td>
+                   <b>Сервисная компания</b>
+               </td>
+
+                {% for machine in machines %}
+                <tr>
+                   <td>{{ machine.type_machine }}</td>
+                   <td>{{ machine.n_machine }}</td>
+                   <td>{{ machine.type_motor }}</a></td>
+                   <td>{{ machine.n_motor }}</td>
+                   <td>{{ machine.date|date:'d M Y' }}</td>
+                   <td>{{ machine.buyer }}</td>
+                   <td>{{ machine.client }}</td>
+                   <td>{{ machine.company }}</td>
+                {% endfor %}
+                </tr>
+       </table>
+   {% else %}
+       <h2>Машин нет!</h2>
+   {% endif %}
+{% endblock content %}
