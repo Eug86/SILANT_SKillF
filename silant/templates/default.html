@@ -31,7 +31,8 @@
                 </form>
             </div>
         {% else %}
-            <div>
+            <div class="login-out">
+                <img src="{% static 'images/login.png' %}" alt="logo" width="20" height="20">
                 <form>
                     <a class="btn btn-primary btn-sm" href="{% url 'login' %}" role="button">Войти<span class="glyphicon glyphicon-ok"></span></a>
                 </form>

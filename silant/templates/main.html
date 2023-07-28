@@ -8,8 +8,16 @@ machines
 {% endblock title %}
 
 {% block content %}
+    <h1>Проверьте комплектацию и технические характеристики техники Силант</h1>
+    <form class="find" action="" method="get">
+       {{ filterset.form.as_p }}
+       <input class="find-input" type="submit" value="Найти" />
+   </form>
+    <div class="line"></div>
+    <h2 class="conteiner-h2">Результат поиска:</h2>
+    <h1>Информация о комплектации и технических характеристиках Вашей техники</h1>
+    <h1>Ваша техника:</h1>
 
-   <h1 class="h1_anns">Машины <i>({{ machines|length }})</i> </h1>
 
     <hr>
    {% if machines %}
@@ -54,6 +62,6 @@ machines
                 </tr>
        </table>
    {% else %}
-       <h2>Машин нет!</h2>
+       <h2>Машин с таким заводским номером нет! Проверьте корректность вводимого номера.</h2>
    {% endif %}
 {% endblock content %}
