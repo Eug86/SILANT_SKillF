@@ -1,15 +1,10 @@
 from django.contrib import admin
-from .models import Client, Company, Machine, TO, Claim, Buyer
+from .models import Client, Company, Machine, TO, Claim
 
 
 @admin.register(Client)
 class AnnAdmin(admin.ModelAdmin):
     model = Client
-
-
-@admin.register(Buyer)
-class AnnAdmin(admin.ModelAdmin):
-    model = Buyer
 
 
 @admin.register(Company)

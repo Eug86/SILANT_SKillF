@@ -24,8 +24,6 @@
         {% if user.is_authenticated %}
             <div class="auth">
                 <h3>Текущий пользователь:  {{ user.username }}</h3>
-            </div>
-            <div>
                 <form>
                     <a class="btn btn-primary btn-sm" href="{% url 'logout' %}" role="button">Выйти<span class="glyphicon glyphicon-ok"></span></a>
                 </form>

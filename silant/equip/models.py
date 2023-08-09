@@ -2,13 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Buyer(models.Model):
-    name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return f'{self.name}'
-
-
 class Client(models.Model):
     name = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -72,11 +65,11 @@ class Machine(models.Model):
     type_cmost = models.CharField(max_length=16, choices=TYPE_CM, default='B35')
     order = models.CharField(max_length=16)
     date = models.DateField()
-    buyer = models.OneToOneField(Buyer, on_delete=models.CASCADE)
+    buyer = models.CharField(max_length=32)
     address = models.TextField()
     options = models.TextField()
-    client = models.OneToOneField(Client, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='service_machines')
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='machines_client')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='machines_service')
 
     def __str__(self):
         return f'{self.n_machine}: {self.type_machine}'

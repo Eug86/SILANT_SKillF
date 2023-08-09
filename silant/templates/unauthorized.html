@@ -1,0 +1,75 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+machines
+{% endblock title %}
+
+{% block content %}
+    <h1>Проверьте комплектацию и технические характеристики техники Силант</h1>
+    <form class="find" action="" method="get">
+       {{ filterset.form.as_p }}
+       <input class="find-input" type="submit" value="Найти" />
+   </form>
+    <div class="line"></div>
+    <h2 class="conteiner-h2">Результат поиска:</h2>
+    <h1>Информация о комплектации и технических характеристиках Вашей техники</h1>
+    <h1><ins>Ваша техника:</ins></h1>
+
+
+    <hr>
+   {% if machines %}
+       <table class="table_dark">
+           <tr>
+               <td>
+                   <b>Зав. № машины</b>
+               </td>
+               <td>
+                   <b>Модель техники</b>
+               </td>
+               <td>
+                   <b>Зав. № двигателя</b>
+               </td>
+               <td>
+                   <b>Модель двигателя</b>
+               </td>
+               <td>
+                   <b>Зав. № трансмиссии</b>
+               </td>
+               <td>
+                   <b>Модель трансмиссии</b>
+               </td>
+               <td>
+                   <b>Зав. № ведущего моста</b>
+               </td>
+               <td>
+                   <b>Модель ведущего моста</b>
+               </td>
+               <td>
+                   <b>Зав. № управляемого моста</b>
+               </td>
+               <td>
+                   <b>Модель управляемого моста</b>
+               </td>
+
+                {% for machine in machines %}
+                <tr>
+                   <td>{{ machine.n_machine }}</td>
+                   <td>{{ machine.type_machine }}</td>
+                   <td>{{ machine.n_motor }}</td>
+                   <td>{{ machine.type_motor }}</td>
+                   <td>{{ machine.n_tranc }}</td>
+                   <td>{{ machine.type_tranc }}</td>
+                   <td>{{ machine.n_vmost }}</td>
+                   <td>{{ machine.type_vmost }}</td>
+                   <td>{{ machine.n_cmost }}</td>
+                   <td>{{ machine.type_cmost }}</td>
+                {% endfor %}
+                </tr>
+       </table>
+   {% else %}
+       <h2>Машин с таким заводским номером нет! Проверьте корректность вводимого номера.</h2>
+   {% endif %}
+{% endblock content %}
