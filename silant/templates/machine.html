@@ -1,0 +1,148 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+machine
+tos
+claims
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+
+<h1> {{user.first_name}} </h1>
+
+    <div class="line"></div>
+        <h2 class="conteiner-h2">Машина: Заводской № {{ machine.n_machine }}</h2>
+<div>
+<input type="checkbox" id="raz1" class="del1" checked="checked"/>
+<label for="raz1" class="del1">Инфо</label>
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Зав. № машины</th>
+                    <th>Модель техники</th>
+                    <th>Зав. № двигателя</th>
+                    <th>Модель двигателя</th>
+                    <th>Зав. № трансмиссии</th>
+                    <th>Модель трансмиссии</th>
+                    <th>Зав. № ведущего моста</th>
+                    <th>Модель ведущего моста</th>
+                    <th>Зав. № управляемого моста</th>
+                    <th>Модель № управляемого моста</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span>Зав. № машины</span>{{ machine.n_machine }}</td>
+                    <td><span>Модель техники</span>{{ machine.type_machine }}</td>
+                    <td><span>Зав. № двигателя</span>{{ machine.n_motor }}</td>
+                    <td><span>Модель двигателя</span>{{ machine.type_motor }}</td>
+                    <td><span>Зав. № трансмиссии</span>{{ machine.n_tranc }}</td>
+                    <td><span>Модель трансмиссии</span>{{ machine.type_tranc }}</td>
+                    <td><span>Зав. № ведущего моста</span>{{ machine.n_vmost }}</td>
+                    <td><span>Модель ведущего моста</span>{{ machine.type_vmost }}</td>
+                    <td><span>Зав. № управляемого моста</span>{{ machine.n_cmost }}</td>
+                    <td><span>Модель № управляемого моста</span>{{ machine.type_cmost }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Договор</th>
+                    <th>Покупатель</th>
+                    <th>Клиент</th>
+                    <th>Адрес поставки(эксплуатации)</th>
+                    <th>Комплектация (доп. опции)</th>
+                    <th>Сервисная компания</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span>Договор</span>{{ machine.order }}</td>
+                    <td><span>Покупатель</span>{{ machine.buyer }}</td>
+                    <td><span>Клиент</span>{{ machine.client }}</td>
+                    <td><span>Адрес поставки(эксплуатации)</span>{{ machine.address }}</td>
+                    <td><span>Комплектация (доп. опции)</span>{{ machine.options }}</td>
+                    <td><span>Сервисная компания</span>{{ machine.company }}</td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+</div>
+<div>
+<input type="checkbox" id="raz2" class="del2" checked="checked"/>
+<label for="raz2" class="del2">ТО</label>
+{% if tos %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Вид ТО</th>
+                    <th>Дата проведения ТО</th>
+                    <th>Наработка, м/час</th>
+                    <th>№ заказ-наряда</th>
+                    <th>дата заказ-наряда</th>
+                    <th>Организация, проводившая ТО</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for to in tos %}
+                <tr>
+                    <td><span>Вид ТО</span>{{ to.type_to }}</td>
+                    <td><span>Дата проведения ТО</span>{{ to.date }}</td>
+                    <td><span>Наработка, м/час</span>{{ to.narabotka }}</td>
+                    <td><span>№ заказ-наряда</span>{{ to.order }}</td>
+                    <td><span>дата заказ-наряда</span>{{ to.date_order }}</td>
+                    <td><span>Организация, проводившая ТО</span>{{ to.doTOservice }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% else %}
+       <h2>Машина ТО не проходила!</h2>
+{% endif %}
+</div>
+</div>
+<div>
+<input type="checkbox" id="raz3" class="del3" checked="checked"/>
+<label for="raz3" class="del3">Рекламации</label>
+{% if claims %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Дата отказа</th>
+                    <th>Наработка, м/час</th>
+                    <th>Узел отказа</th>
+                    <th>Описание отказа</th>
+                    <th>Способ восстановления</th>
+                    <th>Используемые запасные части</th>
+                    <th>Дата восстановления</th>
+                    <th>Время простоя техники</th>
+                    <th>Сервисная компания</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for claim in claims %}
+                <tr>
+                    <td><span>Дата отказа</span>{{ claim.date }}</td>
+                    <td><span>Наработка, м/час</span>{{ claim.narabotka }}</td>
+                    <td><span>Узел отказа</span>{{ claim.detail }}</td>
+                    <td><span>Описание отказа</span>{{ claim.info }}</td>
+                    <td><span>Способ восстановления</span>{{ claim.fix }}</td>
+                    <td><span>Используемые запасные части</span>{{ claim.fix_detail }}</td>
+                    <td><span>Дата восстановления</span>{{ claim.fix_date }}</td>
+                    <td><span>Время простоя техники</span>{{ claim.stop_date }}</td>
+                    <td><span>Сервисная компания</span>{{ claim.service }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% else %}
+       <h2>Рекламаций не было.</h2>
+{% endif %}
+</div>
+</div>
+{% endblock content %}

@@ -217,11 +217,6 @@ h6 {
     padding: 10px;
 }
 
-.input_button {
-    display: block;
-    margin: 0 auto;
-}
-
 #teams_form {
     position: absolute;
     width: 200px;
@@ -303,11 +298,11 @@ display: inline-block;
 padding: 2px 10px;
 border-radius: 2px;
 color: var(--main-color-3);
-background: var(--main-color-1);
+background: var(--main-color-2);
 cursor: pointer;
 }
 .del1:checked + label {
-background: var(--main-color-2);
+background: var(--main-color-1);
 }
 
 .del2 { display: none; }
@@ -318,11 +313,11 @@ display: inline-block;
 padding: 2px 10px;
 border-radius: 2px;
 color: var(--main-color-3);
-background: var(--main-color-1);
+background: var(--main-color-2);
 cursor: pointer;
 }
 .del2:checked + label {
-background: var(--main-color-2);
+background: var(--main-color-1);
 }
 
 .del3 { display: none; }
@@ -333,9 +328,58 @@ display: inline-block;
 padding: 2px 10px;
 border-radius: 2px;
 color: var(--main-color-3);
-background: var(--main-color-1);
+background: var(--main-color-2);
 cursor: pointer;
 }
 .del3:checked + label {
+background: var(--main-color-1);
+}
+
+.del4 { display: none; }
+.del4:not(:checked) + label + * { display: none; }
+.del4:not(:checked) + label,
+.del4:checked + label {
+display: inline-block;
+padding: 2px 10px;
+border-radius: 2px;
+color: var(--main-color-3);
 background: var(--main-color-2);
+cursor: pointer;
+}
+.del4:checked + label {
+background: var(--main-color-1);
+}
+
+.del5 { display: none; }
+.del5:not(:checked) + label + * { display: none; }
+.del5:not(:checked) + label,
+.del5:checked + label {
+display: inline-block;
+padding: 2px 10px;
+border-radius: 2px;
+color: var(--main-color-3);
+background: var(--main-color-2);
+cursor: pointer;
+}
+.del5:checked + label {
+background: var(--main-color-1);
+}
+
+.input_button {
+    display: block;
+    margin: 0 auto;
+    background-color: var(--main-color-3);
+    border-radius: 4px;
+    border: 2px solid var(--main-color-1);
+    color: var(--main-color-1);
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+.input_button:hover {
+  background-color: var(--main-color-1);
+  color: var(--main-color-3);
 }

@@ -1,0 +1,13 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block content %}
+<h1>Тип управляемого моста</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form>
+{% endblock content %}

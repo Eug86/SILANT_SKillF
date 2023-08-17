@@ -1,0 +1,156 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+typemachines
+typemotors
+typetrancs
+typevmosts
+typecmosts
+{% endblock title %}
+{% block content %}
+<div>
+<input type="checkbox" id="raz1" class="del1" checked="checked"/>
+<label for="raz1" class="del1">Тип машины</label>
+{% if typemachines %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for typemachine in typemachines %}
+                <tr>
+                    <td><a href="{% url 'typemachine_detail' pk=typemachine.pk %}">{{ typemachine.name }}</a></td>
+                    <td><span>Описание</span>{{ typemachine.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% else %}
+       <h2>Записей нет</h2>
+{% endif %}
+<form method="LINK" action="typemachines/create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+        </form>
+</div>
+
+<div>
+<input type="checkbox" id="raz2" class="del2" checked="checked"/>
+<label for="raz2" class="del2">Тип мотора</label>
+{% if typemotors %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for typemotor in typemotors %}
+                <tr>
+                    <td><a href="{% url 'typemotor_detail' pk=typemotor.pk %}">{{ typemotor.name }}</a></td>
+                    <td><span>Описание</span>{{ typemotor.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% else %}
+       <h2>Записей нет</h2>
+{% endif %}
+<form method="LINK" action="typemotors/create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+        </form>
+</div>
+
+<div>
+<input type="checkbox" id="raz3" class="del3" checked="checked"/>
+<label for="raz3" class="del3">Тип трансмиссии</label>
+{% if typetrancs %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for typetranc in typetrancs %}
+                <tr>
+                    <td><a href="{% url 'typetranc_detail' pk=typetranc.pk %}">{{ typetranc.name }}</a></td>
+                    <td><span>Описание</span>{{ typetranc.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% else %}
+       <h2>Записей нет</h2>
+{% endif %}
+<form method="LINK" action="typetrancs/create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+        </form>
+</div>
+
+<div>
+<input type="checkbox" id="raz4" class="del4" checked="checked"/>
+<label for="raz4" class="del4">Ведущий мост</label>
+{% if typevmosts %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for typevmost in typevmosts %}
+                <tr>
+                    <td><a href="{% url 'typevmost_detail' pk=typevmost.pk %}">{{ typevmost.name }}</a></td>
+                    <td><span>Описание</span>{{ typevmost.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% else %}
+       <h2>Записей нет</h2>
+{% endif %}
+<form method="LINK" action="typevmosts/create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+        </form>
+</div>
+
+<div>
+<input type="checkbox" id="raz5" class="del5" checked="checked"/>
+<label for="raz5" class="del5">Управляемый мост</label>
+{% if typecmosts %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for typecmost in typecmosts %}
+                <tr>
+                    <td><a href="{% url 'typecmost_detail' pk=typecmost.pk %}">{{ typecmost.name }}</a></td>
+                    <td><span>Описание</span>{{ typecmost.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+<div>
+{% else %}
+       <h2>Записей нет</h2>
+{% endif %}
+
+<form method="LINK" action="typecmosts/create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+        </form>
+</div>
+
+{% endblock content %}

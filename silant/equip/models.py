@@ -19,50 +19,57 @@ class Company(models.Model):
         verbose_name_plural = 'Companies'
 
 
-class Machine(models.Model):
-    TYPE_MA = (
-        ('PD1,5', 'ПД1,5'),
-        ('PG1,5', 'ПГ1,5'),
-        ('PD2,0', 'ПД2,0'),
-        ('PD2,5', 'ПД2,5'),
-        ('PD3,0', 'ПД3,0'),
-        ('PD5,0', 'ПД5,0')
-    )
-    TYPE_MO = (
-        ('D1803', 'Kubota D1803'),
-        ('D-243', 'ММЗ Д-243'),
-        ('V3300', 'Kubota V3300'),
-        ('K21', 'Nissan K21'),
-        ('MMZ-4D', 'MMZ-4D')
-    )
-    TYPE_T = (
-        ('HF30', 'HF30-VP010'),
-        ('HF50', 'HF50-VP020'),
-        ('10VA', '10VA-00105'),
-        ('10VB', '10VB-00106')
-    )
-    TYPE_VM = (
-        ('20VA', '20VA-00101'),
-        ('20VB', '20VB-00102'),
-        ('HA50', 'HA50-VP010'),
-        ('HA30', 'HA30-02020')
-    )
-    TYPE_CM = (
-        ('B35', 'B350655A'),
-        ('VS30', 'VS30-00001'),
-        ('VS20', 'VS20-00001')
-    )
+class TypeMachine(models.Model):
+    name = models.CharField(max_length=8);
+    description = models.TextField()
 
+    def __str__(self):
+        return f'{self.name}'
+
+
+class TypeMotor(models.Model):
+    name = models.CharField(max_length=16);
+    description = models.TextField()
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class TypeTranc(models.Model):
+    name = models.CharField(max_length=16);
+    description = models.TextField()
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class TypeVmost(models.Model):
+    name = models.CharField(max_length=16);
+    description = models.TextField()
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class TypeCmost(models.Model):
+    name = models.CharField(max_length=16);
+    description = models.TextField()
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class Machine(models.Model):
     n_machine = models.CharField(max_length=32)
-    type_machine = models.CharField(max_length=12, choices=TYPE_MA, default='PD1,5')
+    type_machine = models.ForeignKey(TypeMachine, on_delete=models.CASCADE, related_name='machines_typemachine')
     n_motor = models.CharField(max_length=32)
-    type_motor = models.CharField(max_length=16, choices=TYPE_MO, default='D1803')
+    type_motor = models.ForeignKey(TypeMotor, on_delete=models.CASCADE, related_name='machines_typemotor')
     n_tranc = models.CharField(max_length=32)
-    type_tranc = models.CharField(max_length=16, choices=TYPE_T, default='HF30')
+    type_tranc = models.ForeignKey(TypeTranc, on_delete=models.CASCADE, related_name='machines_typetranc')
     n_vmost = models.CharField(max_length=32)
-    type_vmost = models.CharField(max_length=16, choices=TYPE_VM, default='20VA')
+    type_vmost = models.ForeignKey(TypeVmost, on_delete=models.CASCADE, related_name='machines_typevmost')
     n_cmost = models.CharField(max_length=32)
-    type_cmost = models.CharField(max_length=16, choices=TYPE_CM, default='B35')
+    type_cmost = models.ForeignKey(TypeCmost, on_delete=models.CASCADE, related_name='machines_typecmost')
     order = models.CharField(max_length=16)
     date = models.DateField()
     buyer = models.CharField(max_length=32)

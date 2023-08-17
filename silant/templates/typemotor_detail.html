@@ -1,0 +1,17 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+typemotor
+{% endblock title %}
+
+
+{% block content %}
+<h2>---{{ typemotor.name }}---</h2>
+<h1>{{ typemotor.description }}</h1>
+<form method="LINK" action="{% url 'typemotor_delete' pk=typemotor.pk %}">
+    <input class="input_button"  type="submit" value="Удалить">
+</form>
+{% endblock content %}

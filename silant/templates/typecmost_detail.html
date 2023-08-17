@@ -1,0 +1,17 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+typecmost
+{% endblock title %}
+
+
+{% block content %}
+<h2>---{{ typecmost.name }}---</h2>
+<h1>{{ typecmost.description }}</h1>
+<form method="LINK" action="{% url 'typecmost_delete' pk=typecmost.pk %}">
+    <input class="input_button"  type="submit" value="Удалить">
+</form>
+{% endblock content %}
