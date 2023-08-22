@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'django_filters',
     'equip',
-
+    'rest_framework'
 ]
 
 SITE_ID = 1

@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import MachineList, TOList, ClaimList, UnauthorizedList, MachineDetail, List, typemachine_detail, CreateTypeMachine, DeleteTypeMachine, typemotor_detail, CreateTypeMotor, DeleteTypeMotor, typetranc_detail, CreateTypeTranc, DeleteTypeTranc, typecmost_detail, CreateTypeCmost, DeleteTypeCmost, typevmost_detail, CreateTypeVmost, DeleteTypeVmost, CreateMachine, DeleteMachine, TODetail, CreateTO, DeleteTO, ClaimDetail, CreateClaim, DeleteClaim
+from .views import machines, tos, claims, MachineList, TOList, ClaimList, UnauthorizedList, MachineDetail, List, typemachine_detail, CreateTypeMachine, DeleteTypeMachine, typemotor_detail, CreateTypeMotor, DeleteTypeMotor, typetranc_detail, CreateTypeTranc, DeleteTypeTranc, typecmost_detail, CreateTypeCmost, DeleteTypeCmost, typevmost_detail, CreateTypeVmost, DeleteTypeVmost, CreateMachine, DeleteMachine, TODetail, CreateTO, DeleteTO, ClaimDetail, CreateClaim, DeleteClaim
+
 
 
 urlpatterns = [
@@ -32,4 +33,7 @@ urlpatterns = [
    path('claims/<int:pk>', ClaimDetail, name='claim_detail'),
    path('claims/create', CreateClaim.as_view(), name='claim_create'),
    path('claims/delete/<int:pk>', DeleteClaim.as_view(), name='claim_delete'),
+   path('api/machines', machines),
+   path('api/tos', tos),
+   path('api/claims', claims),
 ]

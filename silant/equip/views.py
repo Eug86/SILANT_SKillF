@@ -7,6 +7,10 @@ from django.utils.decorators import method_decorator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
+from .serializers import *
 
 
 class UnauthorizedList(ListView):
@@ -348,3 +352,27 @@ def typecmost_detail(request, pk):
 def typevmost_detail(request, pk):
     typevmost = get_object_or_404(TypeVmost, pk=pk)
     return render(request, 'typevmost_detail.html', {'typevmost': typevmost})
+
+
+@api_view(['GET', 'POST'])
+def machines(request):
+    if request.method == 'GET':
+        machines = Machine.objects.all()
+        serializer = MachineSerializer(machines, many = True)
+        return(Response({'data': serializer.data}))
+
+
+@api_view(['GET', 'POST'])
+def tos(request):
+    if request.method == 'GET':
+        tos = TO.objects.all()
+        serializer = TOSerializer(tos, many = True)
+        return(Response({'data': serializer.data}))
+
+
+@api_view(['GET', 'POST'])
+def claims(request):
+    if request.method == 'GET':
+        claims = Claim.objects.all()
+        serializer = ClaimSerializer(claims, many = True)
+        return(Response({'data': serializer.data}))
