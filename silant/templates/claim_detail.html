@@ -1,0 +1,25 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+claim
+{% endblock title %}
+
+
+{% block content %}
+<h2>---{{ claim.date }}---</h2>
+<h1>{{ claim.narabotka }}</h1>
+<h1>{{ claim.detail }}</h1>
+<h1>{{ claim.info }}</h1>
+<h1>{{ claim.fix }}</h1>
+<h2>{{ claim.fix_detail }}</h2>
+<h1>{{ claim.fix_date }}</h1>
+<h1>{{ claim.stop_date }}</h1>
+<h1>{{ claim.service }}</h1>
+
+<form method="LINK" action="{% url 'claim_delete' pk=claim.pk %}">
+    <input class="input_button"  type="submit" value="Удалить">
+</form>
+{% endblock content %}

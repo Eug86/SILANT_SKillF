@@ -1,0 +1,54 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+to
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+
+<h1> {{user.first_name}} </h1>
+<div class="line"></div>
+
+ <form class="find" action="" method="get">
+       {{ filterset.form.as_p }}
+       <input class="find-input" type="submit" value="Найти" />
+   </form>
+
+<form method="LINK" action="create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+</form>
+{% if tos %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Вид ТО</th>
+                    <th>Дата проведения ТО</th>
+                    <th>Наработка, м/час</th>
+                    <th>№ заказ-наряда</th>
+                    <th>дата заказ-наряда</th>
+                    <th>Организация, проводившая ТО</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for to in tos %}
+                <tr>
+                    <td><span>Вид ТО</span>{{ to.type_to }}</td>
+                    <td><span>Дата проведения ТО</span>{{ to.date }}</td>
+                    <td><span>Наработка, м/час</span>{{ to.narabotka }}</td>
+                    <td><a href="{% url 'to_detail' pk=to.pk %}">{{ to.order }}</a></td>
+                    <td><span>дата заказ-наряда</span>{{ to.date_order }}</td>
+                    <td><span>Организация, проводившая ТО</span>{{ to.doTOservice }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+{% else %}
+       <h2>Список ТО пуст!</h2>
+{% endif %}
+
+{% endblock content %}

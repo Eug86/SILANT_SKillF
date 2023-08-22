@@ -1,0 +1,20 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+to
+{% endblock title %}
+
+
+{% block content %}
+<h2>---{{ to.date }}---</h2>
+<h1>{{ to.narabotka }}</h1>
+<h1>{{ to.order }}</h1>
+<h1>{{ to.date_order }}</h1>
+<h1>{{ to.doTOservice }}</h1>
+<form method="LINK" action="{% url 'to_delete' pk=to.pk %}">
+    <input class="input_button"  type="submit" value="Удалить">
+</form>
+{% endblock content %}

@@ -11,7 +11,11 @@
     <div class="inner-header">
     <div class="logo">
         <div>
+            <a href="/machines">
+            <img src="{% static 'images/home.png' %}" alt="logo" width="50" height="50">
+            </a>
             <img src="{% static 'images/Logotype accent RGB 1.jpg' %}" alt="logo" width="70" height="50">
+
         </div>
         <div>
             <h4>СИЛАНТ</h4>
@@ -39,12 +43,34 @@
     </div>
     <div class="title">
         <h1>Электронная сервисная книжка "Мой Силант"</h1>
+    </div>
+    <div class="inner-header-b">
+        <div>
+        </div>
+        <div>
+        {% if user_in_group_managers %}
         <form method="LINK" action="/machines/list">
         <input class="input_button" type="submit" type="submit" value="Справочник">
         </form>
+        {% endif %}
+        </div>
+        <div>
+        {% if user.is_authenticated %}
+        <form method="LINK" action="/machines/tos">
+        <input class="input_button" type="submit" type="submit" value="ТО">
+        </form>
+        {% endif %}
+        </div>
+        <div>
+        {% if user.is_authenticated %}
+        <form method="LINK" action="/machines/claims">
+        <input class="input_button" type="submit" type="submit" value="Рекламации">
+        </form>
+        {% endif %}
+        </div>
+    </div>
     </div>
 </div>
-
 <div class="container">
 
                     {% block content %}

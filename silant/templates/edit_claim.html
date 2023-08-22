@@ -4,7 +4,7 @@
 <link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
 
 {% block content %}
-<h1>Тип мотора</h1>
+<h1>Рекламация</h1>
 <hr>
 <div id="teams_form">
     <form action="" method="post" enctype="multipart/form-data">
@@ -12,8 +12,5 @@
         {{ form.as_div }}
         <input class="input_button" type="submit" value="Save" />
     </form>
-    <form method="LINK" action="/machines/list">
-    <input class="input_button"  type="submit" value="Назад">
-</form>
 </div>
 {% endblock content %}

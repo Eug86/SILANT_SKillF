@@ -4,16 +4,14 @@
 <link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
 
 {% block content %}
-<h1>Тип мотора</h1>
+<h1>Удаление рекламации</h1>
 <hr>
-<div id="teams_form">
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_div }}
-        <input class="input_button" type="submit" value="Save" />
-    </form>
-    <form method="LINK" action="/machines/list">
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Удаляем рекламацию "{{ object.info }}"?</p>
+    <input type="submit" value="Delete" />
+</form>
+<form method="LINK" action="/machines/claims">
     <input class="input_button"  type="submit" value="Назад">
 </form>
-</div>
 {% endblock content %}

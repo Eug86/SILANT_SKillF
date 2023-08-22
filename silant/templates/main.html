@@ -58,18 +58,17 @@ machines
                </td>
                 {% if user_in_group_clients %}
                     {% for machine in clients_machines %}
-
                         <tr>
                            <td><a href="{% url 'machine_detail' pk=machine.pk %}">{{ machine.n_machine }}</a></td>
-                           <td>{{ machine.type_machine }}</td>
+                           <td><a href="{% url 'typemachine_detail' machine.type_machine.pk %}">{{ machine.type_machine }}</a></td>
                            <td>{{ machine.n_motor }}</td>
-                           <td>{{ machine.type_motor }}</td>
+                           <td><a href="{% url 'typemotor_detail' machine.type_motor.pk %}">{{ machine.type_motor }}</a></td>
                            <td>{{ machine.n_tranc }}</td>
-                           <td>{{ machine.type_tranc }}</td>
+                           <td><a href="{% url 'typetranc_detail' machine.type_tranc.pk %}">{{ machine.type_tranc }}</a></td>
                            <td>{{ machine.n_vmost }}</td>
-                           <td>{{ machine.type_vmost }}</td>
+                           <td><a href="{% url 'typevmost_detail' machine.type_vmost.pk %}">{{ machine.type_vmost }}</a></td>
                            <td>{{ machine.n_cmost }}</td>
-                           <td>{{ machine.type_cmost }}</td>
+                           <td><a href="{% url 'typecmost_detail' machine.type_cmost.pk %}">{{ machine.type_cmost }}</a></td>
                            <td>{{ machine.client }}</td>
                             <td>{{ machine.company }}</td>
                     {% endfor %}
@@ -77,18 +76,18 @@ machines
                     {% for machine in service_machines %}
 
                         <tr>
-                           <td>{{ machine.n_machine }}</td>
-                           <td>{{ machine.type_machine }}</td>
+                           <td><a href="{% url 'machine_detail' pk=machine.pk %}">{{ machine.n_machine }}</a></td>
+                           <td><a href="{% url 'typemachine_detail' machine.type_machine.pk %}">{{ machine.type_machine }}</a></td>
                            <td>{{ machine.n_motor }}</td>
-                           <td>{{ machine.type_motor }}</td>
+                           <td><a href="{% url 'typemotor_detail' machine.type_motor.pk %}">{{ machine.type_motor }}</a></td>
                            <td>{{ machine.n_tranc }}</td>
-                           <td>{{ machine.type_tranc }}</td>
+                           <td><a href="{% url 'typetranc_detail' machine.type_tranc.pk %}">{{ machine.type_tranc }}</a></td>
                            <td>{{ machine.n_vmost }}</td>
-                           <td>{{ machine.type_vmost }}</td>
+                           <td><a href="{% url 'typevmost_detail' machine.type_vmost.pk %}">{{ machine.type_vmost }}</a></td>
                            <td>{{ machine.n_cmost }}</td>
-                           <td>{{ machine.type_cmost }}</td>
+                           <td><a href="{% url 'typecmost_detail' machine.type_cmost.pk %}">{{ machine.type_cmost }}</a></td>
                            <td>{{ machine.client }}</td>
-                           <td>{{ machine.company }}</td>
+                            <td>{{ machine.company }}</td>
                     {% endfor %}
                 {% endif %}
                 </tr>

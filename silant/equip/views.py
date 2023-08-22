@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Machine, Client, Company, TO, Claim, TypeMachine, TypeMotor, TypeTranc, TypeVmost, TypeCmost
-from .filters import MachineFilter
-from .forms import TypeMachineForm, TypeMotorForm, TypeTrancForm, TypeVmostForm, TypeCmostForm
+from .filters import MachineFilter, MachineDetailFilter, TOFilter, ClaimFilter
+from .forms import TypeMachineForm, TypeMotorForm, TypeTrancForm, TypeVmostForm, TypeCmostForm, MachineForm, TOForm, ClaimForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render, get_object_or_404, redirect
@@ -68,14 +68,46 @@ def MachineDetail(request, pk):
 
 class TOList(ListView):
     model = TO
+    ordering = 'date'
     template_name = 'tos.html'
     context_object_name = 'tos'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = TOFilter(self.request.GET, queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filterset'] = self.filterset
+        return context
+
+
+def TODetail(request, pk):
+    to = get_object_or_404(TO, pk=pk)
+    return render(request, 'to_detail.html', {'to': to})
 
 
 class ClaimList(ListView):
     model = Claim
-    template_name = 'claim.html'
+    ordering = 'date'
+    template_name = 'claims.html'
     context_object_name = 'claims'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = ClaimFilter(self.request.GET, queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filterset'] = self.filterset
+        return context
+
+
+def ClaimDetail(request, pk):
+    claim = get_object_or_404(Claim, pk=pk)
+    return render(request, 'claim_detail.html', {'claim': claim})
 
 
 @method_decorator(login_required, name='dispatch')
@@ -208,13 +240,94 @@ class DeleteTypeCmost(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('list')
 
 
+@method_decorator(login_required, name='dispatch')
+class CreateMachine(PermissionRequiredMixin, CreateView):
+    permission_required = ('equip.add_machine',)
+    form_class = MachineForm
+    model = Machine
+    template_name = 'edit_machine.html'
+    success_url = reverse_lazy('machines')
+
+
+@method_decorator(login_required, name='dispatch')
+class EditMachine(PermissionRequiredMixin, UpdateView):
+    permission_required = ('equip.edit_machine',)
+    form_class = MachineForm
+    model = Machine
+    template_name = 'edit_machine.html'
+    success_url = reverse_lazy('machines')
+
+
+@method_decorator(login_required, name='dispatch')
+class DeleteMachine(PermissionRequiredMixin, DeleteView):
+    permission_required = ('equip.delete_machine',)
+    model = Machine
+    template_name = 'delete_machine.html'
+    success_url = reverse_lazy('machines')
+
+
+@method_decorator(login_required, name='dispatch')
+class CreateTO(PermissionRequiredMixin, CreateView):
+    permission_required = ('equip.add_to',)
+    form_class = TOForm
+    model = TO
+    template_name = 'edit_to.html'
+    success_url = reverse_lazy('tos')
+
+
+@method_decorator(login_required, name='dispatch')
+class EditTO(PermissionRequiredMixin, UpdateView):
+    permission_required = ('equip.edit_to',)
+    form_class = TOForm
+    model = TO
+    template_name = 'edit_to.html'
+    success_url = reverse_lazy('tos')
+
+
+@method_decorator(login_required, name='dispatch')
+class DeleteTO(PermissionRequiredMixin, DeleteView):
+    permission_required = ('equip.delete_to',)
+    model = TO
+    template_name = 'delete_to.html'
+    success_url = reverse_lazy('tos')
+
+
+@method_decorator(login_required, name='dispatch')
+class CreateClaim(PermissionRequiredMixin, CreateView):
+    permission_required = ('equip.add_claim',)
+    form_class = ClaimForm
+    model = Claim
+    template_name = 'edit_claim.html'
+    success_url = reverse_lazy('claims')
+
+
+@method_decorator(login_required, name='dispatch')
+class EditClaim(PermissionRequiredMixin, UpdateView):
+    permission_required = ('equip.edit_claim',)
+    form_class = ClaimForm
+    model = Claim
+    template_name = 'edit_claim.html'
+    success_url = reverse_lazy('claims')
+
+
+@method_decorator(login_required, name='dispatch')
+class DeleteClaim(PermissionRequiredMixin, DeleteView):
+    permission_required = ('equip.delete_claim',)
+    model = Claim
+    template_name = 'delete_claim.html'
+    success_url = reverse_lazy('claims')
+
+
 def List(request):
     typemachines = TypeMachine.objects.all()
     typemotors = TypeMotor.objects.all()
     typetrancs = TypeTranc.objects.all()
     typecmosts = TypeCmost.objects.all()
     typevmosts = TypeVmost.objects.all()
-    return render(request, 'list.html', {'typemachines': typemachines, 'typemotors': typemotors, 'typetrancs': typetrancs, 'typevmosts': typevmosts, 'typecmosts': typecmosts})
+    machines = Machine.objects.all()
+    tos = TO.objects.all()
+    claims = Claim.objects.all()
+    return render(request, 'list.html', {'typemachines': typemachines, 'typemotors': typemotors, 'typetrancs': typetrancs, 'typevmosts': typevmosts, 'typecmosts': typecmosts, 'machines': machines, 'tos': tos, 'claims': claims})
 
 def typemachine_detail(request, pk):
     typemachine = get_object_or_404(TypeMachine, pk=pk)

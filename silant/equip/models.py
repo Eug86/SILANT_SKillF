@@ -20,7 +20,7 @@ class Company(models.Model):
 
 
 class TypeMachine(models.Model):
-    name = models.CharField(max_length=8);
+    name = models.CharField(max_length=8)
     description = models.TextField()
 
     def __str__(self):
@@ -98,10 +98,10 @@ class TO(models.Model):
     date_order = models.DateField()
     doTOservice = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='service_do_tos')
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE, related_name='machine_tos')
-    service = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='service_tos')
+
 
     def __str__(self):
-        return f'{self.type_to}: {self.machine}'
+        return f'{self.type_to}: {self.machine} ---- {self.order}'
 
 
 class Claim(models.Model):

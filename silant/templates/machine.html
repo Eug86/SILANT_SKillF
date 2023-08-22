@@ -5,8 +5,8 @@
 
 {% block title %}
 machine
-tos
-claims
+to
+claim
 {% endblock title %}
 
 <!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
@@ -16,10 +16,15 @@ claims
 
     <div class="line"></div>
         <h2 class="conteiner-h2">Машина: Заводской № {{ machine.n_machine }}</h2>
+        {% if user_in_group_managers %}
+        <form method="LINK" action="{% url 'machine_delete' pk=machine.pk %}">
+    <input class="input_button"  type="submit" value="Удалить">
+        {% endif %}
+</form>
 <div>
 <input type="checkbox" id="raz1" class="del1" checked="checked"/>
 <label for="raz1" class="del1">Инфо</label>
-<div>        <table class="resp-tab">
+       <table class="resp-tab">
             <thead>
                 <tr>
                     <th>Зав. № машины</th>
@@ -36,16 +41,16 @@ claims
             </thead>
             <tbody>
                 <tr>
-                    <td><span>Зав. № машины</span>{{ machine.n_machine }}</td>
-                    <td><span>Модель техники</span>{{ machine.type_machine }}</td>
-                    <td><span>Зав. № двигателя</span>{{ machine.n_motor }}</td>
-                    <td><span>Модель двигателя</span>{{ machine.type_motor }}</td>
-                    <td><span>Зав. № трансмиссии</span>{{ machine.n_tranc }}</td>
-                    <td><span>Модель трансмиссии</span>{{ machine.type_tranc }}</td>
-                    <td><span>Зав. № ведущего моста</span>{{ machine.n_vmost }}</td>
-                    <td><span>Модель ведущего моста</span>{{ machine.type_vmost }}</td>
-                    <td><span>Зав. № управляемого моста</span>{{ machine.n_cmost }}</td>
-                    <td><span>Модель № управляемого моста</span>{{ machine.type_cmost }}</td>
+                           <td><a href="{% url 'machine_detail' pk=machine.pk %}">{{ machine.n_machine }}</a></td>
+                           <td><a href="{% url 'typemachine_detail' machine.type_machine.pk %}">{{ machine.type_machine }}</a></td>
+                           <td>{{ machine.n_motor }}</td>
+                           <td><a href="{% url 'typemotor_detail' machine.type_motor.pk %}">{{ machine.type_motor }}</a></td>
+                           <td>{{ machine.n_tranc }}</td>
+                           <td><a href="{% url 'typetranc_detail' machine.type_tranc.pk %}">{{ machine.type_tranc }}</a></td>
+                           <td>{{ machine.n_vmost }}</td>
+                           <td><a href="{% url 'typevmost_detail' machine.type_vmost.pk %}">{{ machine.type_vmost }}</a></td>
+                           <td>{{ machine.n_cmost }}</td>
+                           <td><a href="{% url 'typecmost_detail' machine.type_cmost.pk %}">{{ machine.type_cmost }}</a></td>
                 </tr>
             </tbody>
         </table>
@@ -74,7 +79,7 @@ claims
 </div>
 </div>
 <div>
-<input type="checkbox" id="raz2" class="del2" checked="checked"/>
+<input type="checkbox" id="raz2" class="del2"/>
 <label for="raz2" class="del2">ТО</label>
 {% if tos %}
 <div>        <table class="resp-tab">
@@ -107,7 +112,7 @@ claims
 </div>
 </div>
 <div>
-<input type="checkbox" id="raz3" class="del3" checked="checked"/>
+<input type="checkbox" id="raz3" class="del3"/>
 <label for="raz3" class="del3">Рекламации</label>
 {% if claims %}
 <div>        <table class="resp-tab">

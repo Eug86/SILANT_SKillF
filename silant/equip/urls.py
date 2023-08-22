@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import MachineList, UnauthorizedList, MachineDetail, List, typemachine_detail, CreateTypeMachine, DeleteTypeMachine, typemotor_detail, CreateTypeMotor, DeleteTypeMotor, typetranc_detail, CreateTypeTranc, DeleteTypeTranc, typecmost_detail, CreateTypeCmost, DeleteTypeCmost, typevmost_detail, CreateTypeVmost, DeleteTypeVmost
+from .views import MachineList, TOList, ClaimList, UnauthorizedList, MachineDetail, List, typemachine_detail, CreateTypeMachine, DeleteTypeMachine, typemotor_detail, CreateTypeMotor, DeleteTypeMotor, typetranc_detail, CreateTypeTranc, DeleteTypeTranc, typecmost_detail, CreateTypeCmost, DeleteTypeCmost, typevmost_detail, CreateTypeVmost, DeleteTypeVmost, CreateMachine, DeleteMachine, TODetail, CreateTO, DeleteTO, ClaimDetail, CreateClaim, DeleteClaim
 
 
 urlpatterns = [
@@ -22,4 +22,14 @@ urlpatterns = [
    path('typevmosts/<int:pk>', typevmost_detail, name='typevmost_detail'),
    path('typevmosts/create', CreateTypeVmost.as_view(), name='typevmost_create'),
    path('typevmosts/delete/<int:pk>', DeleteTypeVmost.as_view(), name='typevmost_delete'),
+   path('machines/create', CreateMachine.as_view(), name='machine_create'),
+   path('machines/delete/<int:pk>', DeleteMachine.as_view(), name='machine_delete'),
+   path('tos/', TOList.as_view(), name='tos'),
+   path('tos/<int:pk>', TODetail, name='to_detail'),
+   path('tos/create', CreateTO.as_view(), name='to_create'),
+   path('tos/delete/<int:pk>', DeleteTO.as_view(), name='to_delete'),
+   path('claims/', ClaimList.as_view(), name='claims'),
+   path('claims/<int:pk>', ClaimDetail, name='claim_detail'),
+   path('claims/create', CreateClaim.as_view(), name='claim_create'),
+   path('claims/delete/<int:pk>', DeleteClaim.as_view(), name='claim_delete'),
 ]

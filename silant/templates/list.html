@@ -4,6 +4,9 @@
 <link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
 
 {% block title %}
+machines
+tos
+claims
 typemachines
 typemotors
 typetrancs
@@ -12,7 +15,129 @@ typecmosts
 {% endblock title %}
 {% block content %}
 <div>
-<input type="checkbox" id="raz1" class="del1" checked="checked"/>
+<input type="checkbox" id="raz6" class="del6"/>
+<label for="raz6" class="del6">Машина</label>
+{% if machines %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Зав. № машины</th>
+                    <th>Модель техники</th>
+                    <th>Зав. № двигателя</th>
+                    <th>Модель двигателя</th>
+                    <th>Зав. № трансмиссии</th>
+                    <th>Модель трансмиссии</th>
+                    <th>Зав. № ведущего моста</th>
+                    <th>Модель ведущего моста</th>
+                    <th>Зав. № управляемого моста</th>
+                    <th>Модель № управляемого моста</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for machine in machines %}
+                <tr>
+                    <td><a href="{% url 'machine_detail' pk=machine.pk %}">{{ machine.n_machine }}</a></td>
+                    <td><span>Модель техники</span>{{ machine.type_machine }}</td>
+                    <td><span>Зав. № двигателя</span>{{ machine.n_motor }}</td>
+                    <td><span>Модель двигателя</span>{{ machine.type_motor }}</td>
+                    <td><span>Зав. № трансмиссии</span>{{ machine.n_tranc }}</td>
+                    <td><span>Модель трансмиссии</span>{{ machine.type_tranc }}</td>
+                    <td><span>Зав. № ведущего моста</span>{{ machine.n_vmost }}</td>
+                    <td><span>Модель ведущего моста</span>{{ machine.type_vmost }}</td>
+                    <td><span>Зав. № управляемого моста</span>{{ machine.n_cmost }}</td>
+                    <td><span>Модель № управляемого моста</span>{{ machine.type_cmost }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% else %}
+       <h2>Записей по машинам нет</h2>
+{% endif %}
+<form method="LINK" action="machines/create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+        </form>
+</div>
+
+<div>
+<input type="checkbox" id="raz7" class="del7"/>
+<label for="raz7" class="del7">TO</label>
+{% if tos %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Вид ТО</th>
+                    <th>Дата проведения ТО</th>
+                    <th>Наработка, м/час</th>
+                    <th>№ заказ-наряда</th>
+                    <th>дата заказ-наряда</th>
+                    <th>Организация, проводившая ТО</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for to in tos %}
+                <tr>
+                    <td><span>Вид ТО</span>{{ to.type_to }}</td>
+                    <td><span>Дата проведения ТО</span>{{ to.date }}</td>
+                    <td><span>Наработка, м/час</span>{{ to.narabotka }}</td>
+                    <td><a href="{% url 'to_detail' pk=to.pk %}">{{ to.order }}</a></td>
+                    <td><span>дата заказ-наряда</span>{{ to.date_order }}</td>
+                    <td><span>Организация, проводившая ТО</span>{{ to.doTOservice }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% else %}
+       <h2>Записей по TO нет</h2>
+{% endif %}
+<form method="LINK" action="tos/create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+        </form>
+</div>
+
+<div>
+<input type="checkbox" id="raz8" class="del8"/>
+<label for="raz8" class="del8">Рекламации</label>
+{% if claims %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Дата отказа</th>
+                    <th>Наработка, м/час</th>
+                    <th>Узел отказа</th>
+                    <th>Описание отказа</th>
+                    <th>Способ восстановления</th>
+                    <th>Используемые запасные части</th>
+                    <th>Дата восстановления</th>
+                    <th>Время простоя техники</th>
+                    <th>Сервисная компания</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for claim in claims %}
+                <tr>
+                    <td><a href="{% url 'claim_detail' pk=claim.pk %}">{{ claim.date }}</a></td>
+                    <td><span>Наработка, м/час</span>{{ claim.narabotka }}</td>
+                    <td><span>Узел отказа</span>{{ claim.detail }}</td>
+                    <td><span>Описание отказа</span>{{ claim.info }}</td>
+                    <td><span>Способ восстановления</span>{{ claim.fix }}</td>
+                    <td><span>Используемые запасные части</span>{{ claim.fix_detail }}</td>
+                    <td><span>Дата восстановления</span>{{ claim.fix_date }}</td>
+                    <td><span>Время простоя техники</span>{{ claim.stop_date }}</td>
+                    <td><span>Сервисная компания</span>{{ claim.service }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% else %}
+       <h2>Записей по реклимациям нет</h2>
+{% endif %}
+<form method="LINK" action="machines/create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+        </form>
+</div>
+
+<div>
+<input type="checkbox" id="raz1" class="del1"/>
 <label for="raz1" class="del1">Тип машины</label>
 {% if typemachines %}
 <div>        <table class="resp-tab">
@@ -40,7 +165,7 @@ typecmosts
 </div>
 
 <div>
-<input type="checkbox" id="raz2" class="del2" checked="checked"/>
+<input type="checkbox" id="raz2" class="del2"/>
 <label for="raz2" class="del2">Тип мотора</label>
 {% if typemotors %}
 <div>        <table class="resp-tab">
@@ -68,7 +193,7 @@ typecmosts
 </div>
 
 <div>
-<input type="checkbox" id="raz3" class="del3" checked="checked"/>
+<input type="checkbox" id="raz3" class="del3"/>
 <label for="raz3" class="del3">Тип трансмиссии</label>
 {% if typetrancs %}
 <div>        <table class="resp-tab">
@@ -96,8 +221,8 @@ typecmosts
 </div>
 
 <div>
-<input type="checkbox" id="raz4" class="del4" checked="checked"/>
-<label for="raz4" class="del4">Ведущий мост</label>
+<input type="checkbox" id="raz4" class="del4"/>
+<label for="raz4" class="del4">Тип ведущего моста</label>
 {% if typevmosts %}
 <div>        <table class="resp-tab">
             <thead>
@@ -124,8 +249,8 @@ typecmosts
 </div>
 
 <div>
-<input type="checkbox" id="raz5" class="del5" checked="checked"/>
-<label for="raz5" class="del5">Управляемый мост</label>
+<input type="checkbox" id="raz5" class="del5"/>
+<label for="raz5" class="del5">Тип управляемого моста</label>
 {% if typecmosts %}
 <div>        <table class="resp-tab">
             <thead>

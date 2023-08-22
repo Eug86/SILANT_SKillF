@@ -1,0 +1,61 @@
+{% extends 'default.html' %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fonts/PT-Astra-Sans_Regular.ttf' %}" rel="stylesheet">
+
+{% block title %}
+claim
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+
+<h1> {{user.first_name}} </h1>
+<div class="line"></div>
+
+ <form class="find" action="" method="get">
+       {{ filterset.form.as_p }}
+       <input class="find-input" type="submit" value="Найти" />
+   </form>
+{% if user in user_in_group_managers or user in user_in_group_service %}
+<form method="LINK" action="create">
+        <input class="input_button" type="submit" type="submit" value="Создать">
+</form>
+{% endif %}
+{% if claims %}
+<div>        <table class="resp-tab">
+            <thead>
+                <tr>
+                    <th>Дата отказа</th>
+                    <th>Наработка, м/час</th>
+                    <th>Узел отказа</th>
+                    <th>Описание отказа</th>
+                    <th>Способ восстановления</th>
+                    <th>Используемые запасные части</th>
+                    <th>Дата восстановления</th>
+                    <th>Время простоя техники</th>
+                    <th>Сервисная компания</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for claim in claims %}
+                <tr>
+                    <td><a href="{% url 'claim_detail' pk=claim.pk %}">{{ claim.date }}</a></td>
+                    <td><span>Наработка, м/час</span>{{ claim.narabotka }}</td>
+                    <td><span>Узел отказа</span>{{ claim.detail }}</td>
+                    <td><span>Описание отказа</span>{{ claim.info }}</td>
+                    <td><span>Способ восстановления</span>{{ claim.fix }}</td>
+                    <td><span>Используемые запасные части</span>{{ claim.fix_detail }}</td>
+                    <td><span>Дата восстановления</span>{{ claim.fix_date }}</td>
+                    <td><span>Время простоя техники</span>{{ claim.stop_date }}</td>
+                    <td><span>Сервисная компания</span>{{ claim.service }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+{% else %}
+       <h2>Список рекламаций пуст!</h2>
+{% endif %}
+
+{% endblock content %}
